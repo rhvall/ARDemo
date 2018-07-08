@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="20l-Vd-VXv">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="nsj-Bz-yfu">
+            <objects>
+                <viewController id="20l-Vd-VXv" customClass="ViewController" customModule="ARKitPlanesAndObjects" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sMS-aO-Hu6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JSX-ev-2yL">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <connections>
+                                    <outlet property="delegate" destination="20l-Vd-VXv" id="S3F-Ij-iX4"/>
+                                </connections>
+                            </arscnView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="👀 Look for a plane to place your coffee" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j94-VC-oTv">
+                                <rect key="frame" x="16" y="40" width="343" height="40"/>
+                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.79724957191780821" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="oMu-pI-xLW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="☕️#" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3AX-u6-2Gz">
+                                <rect key="frame" x="260" y="602" width="99" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="dPo-IN-dmb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You win!!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="usx-qm-g3j">
+                                <rect key="frame" x="129.5" y="313.5" width="116.5" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="TxL-Hg-EjO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="JSX-ev-2yL" firstAttribute="trailing" secondItem="hJL-2G-fdh" secondAttribute="trailing" id="60I-lZ-BjX"/>
+                            <constraint firstItem="j94-VC-oTv" firstAttribute="centerX" secondItem="sMS-aO-Hu6" secondAttribute="centerX" id="AIJ-yA-vKv"/>
+                            <constraint firstItem="j94-VC-oTv" firstAttribute="top" secondItem="hJL-2G-fdh" secondAttribute="top" constant="20" id="B8g-kX-pom"/>
+                            <constraint firstItem="3AX-u6-2Gz" firstAttribute="leading" secondItem="JSX-ev-2yL" secondAttribute="trailing" constant="-115" id="MAW-2f-14Z"/>
+                            <constraint firstItem="j94-VC-oTv" firstAttribute="leading" secondItem="hJL-2G-fdh" secondAttribute="leading" constant="16" id="Qfo-fB-kZj"/>
+                            <constraint firstItem="JSX-ev-2yL" firstAttribute="top" secondItem="sMS-aO-Hu6" secondAttribute="top" id="XRE-pQ-TTk"/>
+                            <constraint firstItem="hJL-2G-fdh" firstAttribute="trailing" secondItem="j94-VC-oTv" secondAttribute="trailing" constant="16" id="gEF-zS-mDi"/>
+                            <constraint firstItem="JSX-ev-2yL" firstAttribute="bottom" secondItem="hJL-2G-fdh" secondAttribute="bottom" id="p80-TA-3xF"/>
+                            <constraint firstItem="JSX-ev-2yL" firstAttribute="leading" secondItem="hJL-2G-fdh" secondAttribute="leading" id="pu1-gk-U4k"/>
+                            <constraint firstItem="usx-qm-g3j" firstAttribute="centerY" secondItem="JSX-ev-2yL" secondAttribute="centerY" id="rvG-x7-Hyk"/>
+                            <constraint firstItem="usx-qm-g3j" firstAttribute="centerX" secondItem="JSX-ev-2yL" secondAttribute="centerX" id="tIN-vW-nKA"/>
+                            <constraint firstItem="3AX-u6-2Gz" firstAttribute="top" secondItem="JSX-ev-2yL" secondAttribute="bottom" constant="-65" id="wZe-Mb-dek"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hJL-2G-fdh"/>
+                    </view>
+                    <connections>
+                        <outlet property="countLabel" destination="3AX-u6-2Gz" id="6fX-3J-Ree"/>
+                        <outlet property="sceneView" destination="JSX-ev-2yL" id="GSD-Nw-tIS"/>
+                        <outlet property="statusLabel" destination="j94-VC-oTv" id="utU-H1-b1h"/>
+                        <outlet property="winLabel" destination="usx-qm-g3j" id="0EW-fH-XcE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YhN-NI-yt2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-218.40000000000001" y="26.53673163418291"/>
+        </scene>
+    </scenes>
+</document>
