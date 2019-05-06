@@ -10,20 +10,17 @@ import UIKit
 import SceneKit
 import ARKit
 
-let maxObjects = 5
+let maxObjects = 1
 
 class ViewController: UIViewController, ARSCNViewDelegate {
     // outlets
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet weak var statusLabel: UILabel!
-    // Added label to show how many objects have been removed
-    @IBOutlet weak var countLabel: UILabel!
-    // Added label to show the game has ended
-    @IBOutlet weak var winLabel: UILabel!
     
     // Strings to names and files that are used in the project
-    let daeFileName = "mug.dae"
-    let daeObject = "Mug"
+    let daeFileName = "Casa.dae"
+    // let daeObject = "Group"
+    let daeObject = "Group"
     let planeName = "Plane"
     let sphereName = "Sphere"
     
@@ -64,7 +61,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.showsStatistics = true
         
         // configure settings and debug options for scene
-        self.sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints, SCNDebugOptions.showConstraints, SCNDebugOptions.showLightExtents, ARSCNDebugOptions.showWorldOrigin]
+        self.sceneView.debugOptions = [SCNDebugOptions.showFeaturePoints, SCNDebugOptions.showConstraints, SCNDebugOptions.showLightExtents, SCNDebugOptions.showWorldOrigin]
         self.sceneView.automaticallyUpdatesLighting = true
 
         // Create a new scene
@@ -82,10 +79,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // This helps to keep the counter for objects in the plane
         numberOfObjects = Set()
-        // Label with the number of objects in a plane
-        countLabel.text = "☕️#0"
-        // Hide the win label until the end
-        winLabel.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -119,6 +112,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         // create a 3d plane from the anchor
         if let arPlaneAnchor = anchor as? ARPlaneAnchor {
+            if planes.count >= 1 {
+                return
+            }
+            
             let plane = VirtualPlane(anchor: arPlaneAnchor)
             // Helps to name it to later recognize it
             plane.name = planeName
@@ -194,36 +191,22 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 // Remove that object from the scene and the set
                 node.removeFromParentNode()
                 numberOfObjects?.remove(node)
-                // Update the label with number of objects
-                countLabel.text = "☕️#\(numberOfObjects?.count ?? 0)"
             }
             
-            if numberOfObjects?.count == 0 {
-                // Small easter egg
-                statusLabel.text = "Finish it"
-            }
             
             if sphereName == node.name {
                 if numberOfObjects?.count != 0 { return }
                 // Once all objects have been eliminated, it is time
                 // for the sphere to disappear
                 node.removeFromParentNode()
-                // Show who's the winner
-                winLabel.isHidden = false
             }
         }
     }
     
     func addObjectsToPlane(_ plane: VirtualPlane, amount: Int = maxObjects) {
-        let sphereNode = createSphereNode(createSphere(0.05, getSphereMaterial(UIColor.blue)))
-        sphereObject = sphereNode
-        plane.addChildNode(sphereNode)
-
-        for i in 0...amount {
-            let objClone = cloneObjectNode(Float(i))
-            plane.addChildNode(objClone)
-            numberOfObjects?.insert(objClone)
-        }
+        let objClone = cloneObjectNode(Float(amount))
+        plane.addChildNode(objClone)
+        numberOfObjects?.insert(objClone)
     }
 
     // Pure function that creates materials with passed color
@@ -240,18 +223,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         return sphere
     }
     
-    // Function that creates an sphere node
-    func createSphereNode(_ sphere: SCNSphere) -> SCNNode {
-        let sphereNode = SCNNode(geometry: sphere)
-        sphereNode.name = sphereName
-        sphereNode.position = SCNVector3Zero
-        return sphereNode
-    }
-    
     // Function that clones mugNode
     func cloneObjectNode(_ position: Float) -> SCNNode {
         let objClone = mugNode.clone()
         objClone.position = SCNVector3Make(cos(position) * 0.1, 0.01, sin(position) * 0.1)
+//        objClone.scale = SCNVector3(0.001, 0.001, 0.001)
+         objClone.scale = SCNVector3(0.015, 0.015, 0.015)
         objClone.name = daeObject
         return objClone
     }

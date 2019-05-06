@@ -32,7 +32,6 @@ class VirtualPlane: SCNNode {
         self.planeNode = SCNNode(geometry: self.planeGeometry)
         planeNode.position = SCNVector3(anchor.center.x, 0, anchor.center.z)
         planeNode.transform = SCNMatrix4MakeRotation(-Float.pi / 2.0, 1.0, 0.0, 0.0)
-        
         // update the material representation for this plane
         updatePlaneMaterialDimensions()
         
